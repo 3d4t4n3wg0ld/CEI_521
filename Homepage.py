@@ -1,7 +1,6 @@
 import requests
 import math
 import json
-import sys
 import app
 from currency_converter_app_alternative import currency_converter,main
 from streamlit_option_menu import option_menu
@@ -12,7 +11,7 @@ def print_currency_rate(from_currency, to_currency):
     rate = c.get_rate(from_currency, to_currency)
     return rate
 st.sidebar.title("Navigation")
-page = st.sidebar.selectbox("Select a page", ["Weather for Limassol", "Weather for a city", "Currency Converter","Currency Converter to Euro","Practice"])
+page = st.sidebar.selectbox("Select a page", ["Weather for Limassol", "Weather for a city", "Currency Converter","Currency Converter to Euro"])
 
     # Main content
 if page == "Weather for Limassol":
@@ -39,17 +38,6 @@ if page == "Currency Converter":
         st.success(f"{amount:.2f} {from_currency} is equal to {converted_amount:.2f} {to_currency}")
 
 if page == "Currency Converter to Euro":
-  
-   st.title("Currency Converter to Euro")
-   amount = st.number_input("Enter the amount:", min_value=0.01, value=1.00, step=0.01)
-   from_currency = st.selectbox("From Currency:", ["USD", "EUR", "GBP", "JPY", "INR"])
-   to_currency = st.selectbox("To Currency:", ["EUR"])
-
-   if st.button("Convert"):
-        converted_amount = currency_converter(amount, from_currency, to_currency)
-        st.success(f"{amount:.2f} {from_currency} is equal to {converted_amount:.2f} {to_currency}")
-
-if page == "Practice":
     
     from_currency_USD = "USD"
     from_currency_JPY = "JPY"
